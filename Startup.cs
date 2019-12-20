@@ -34,8 +34,8 @@ namespace WebAppCapellaKM_05
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
 
-            services.AddDbContext<WebAppCapellaKM_05Context>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WebAppCapellaKM_05Context")));
+         //   services.AddDbContext<WebAppCapellaKM_05Context>(options =>
+         //           options.UseSqlServer(Configuration.GetConnectionString("WebAppCapellaKM_05Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

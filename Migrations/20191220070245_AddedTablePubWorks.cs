@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebAppCapellaKM_05.Data.Migrations
+namespace WebAppCapellaKM_05.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class AddedTablePubWorks : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,11 +47,57 @@ namespace WebAppCapellaKM_05.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Author",
+                columns: table => new
+                {
+                    AuthorID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AuthorFirstName = table.Column<string>(nullable: true),
+                    AuthorLastName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Author", x => x.AuthorID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Publication",
+                columns: table => new
+                {
+                    PublicationID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PublicationName = table.Column<string>(nullable: true),
+                    PublicationPublisher = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Publication", x => x.PublicationID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PubWork",
+                columns: table => new
+                {
+                    PubWorkID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PubWorkName = table.Column<string>(nullable: true),
+                    PubWorkNote = table.Column<string>(nullable: true),
+                    PubWorkAbstract = table.Column<string>(nullable: true),
+                    PubWorkKeywords = table.Column<string>(nullable: true),
+                    PubWorkPublicationID = table.Column<int>(nullable: false),
+                    PubWorkAuthorID = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PubWork", x => x.PubWorkID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +118,7 @@ namespace WebAppCapellaKM_05.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -209,6 +254,15 @@ namespace WebAppCapellaKM_05.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Author");
+
+            migrationBuilder.DropTable(
+                name: "Publication");
+
+            migrationBuilder.DropTable(
+                name: "PubWork");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

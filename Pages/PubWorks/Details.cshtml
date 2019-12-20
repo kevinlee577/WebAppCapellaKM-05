@@ -1,0 +1,49 @@
+﻿@page
+@model WebAppCapellaKM_05.Pages.PubWorks.DetailsModel
+
+<div>
+    <h4>PubWork</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PubWork.PubWorkName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PubWork.PubWorkName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PubWork.PubWorkNote)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PubWork.PubWorkNote)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PubWork.PubWorkAbstract)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PubWork.PubWorkAbstract)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PubWork.PubWorkKeywords)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PubWork.PubWorkKeywords)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PubWork.PubWorkPublicationID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PubWork.PubWorkPublicationID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PubWork.PubWorkAuthorID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PubWork.PubWorkAuthorID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.PubWork.PubWorkID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

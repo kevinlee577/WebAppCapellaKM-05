@@ -15,5 +15,6 @@ namespace WebAppCapellaKM_05.Data
         }
         public DbSet<WebAppCapellaKM_05.Models.Author> Author { get; set; }
         public DbSet<WebAppCapellaKM_05.Models.Publication> Publication { get; set; }
+        public DbSet<WebAppCapellaKM_05.Models.PubWork> PubWork { get; set; }
     }
 }

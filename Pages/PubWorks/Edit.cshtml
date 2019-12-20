@@ -1,0 +1,54 @@
+﻿@page
+@model WebAppCapellaKM_05.Pages.PubWorks.EditModel
+
+<h4>PubWork</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PubWork.PubWorkID" />
+            <div class="form-group">
+                <label asp-for="PubWork.PubWorkName" class="control-label"></label>
+                <input asp-for="PubWork.PubWorkName" class="form-control" />
+                <span asp-validation-for="PubWork.PubWorkName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PubWork.PubWorkNote" class="control-label"></label>
+                <input asp-for="PubWork.PubWorkNote" class="form-control" />
+                <span asp-validation-for="PubWork.PubWorkNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PubWork.PubWorkAbstract" class="control-label"></label>
+                <input asp-for="PubWork.PubWorkAbstract" class="form-control" />
+                <span asp-validation-for="PubWork.PubWorkAbstract" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PubWork.PubWorkKeywords" class="control-label"></label>
+                <input asp-for="PubWork.PubWorkKeywords" class="form-control" />
+                <span asp-validation-for="PubWork.PubWorkKeywords" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PubWork.PubWorkPublicationID" class="control-label"></label>
+                <input asp-for="PubWork.PubWorkPublicationID" class="form-control" />
+                <span asp-validation-for="PubWork.PubWorkPublicationID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PubWork.PubWorkAuthorID" class="control-label"></label>
+                <input asp-for="PubWork.PubWorkAuthorID" class="form-control" />
+                <span asp-validation-for="PubWork.PubWorkAuthorID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
