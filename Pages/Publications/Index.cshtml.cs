@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAppCapellaKM_05.Data;
 using WebAppCapellaKM_05.Models;
 
-namespace WebAppCapellaKM_05.Pages.Authors
+namespace WebAppCapellaKM_05.Pages.Publications
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace WebAppCapellaKM_05.Pages.Authors
             _context = context;
         }
 
-        public IList<Author> Author { get;set; }
+        public IList<Publication> Publication { get;set; }
 
         public async Task OnGetAsync()
         {
-            Author = await _context.Author.ToListAsync();
+            Publication = await _context.Publication.ToListAsync();
         }
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAppCapellaKM_05.Data;
 using WebAppCapellaKM_05.Models;
 
-namespace WebAppCapellaKM_05.Pages.Authors
+namespace WebAppCapellaKM_05.Pages.Publications
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace WebAppCapellaKM_05.Pages.Authors
         }
 
         [BindProperty]
-        public Author Author { get; set; }
+        public Publication Publication { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,9 +30,9 @@ namespace WebAppCapellaKM_05.Pages.Authors
                 return NotFound();
             }
 
-            Author = await _context.Author.FirstOrDefaultAsync(m => m.AuthorID == id);
+            Publication = await _context.Publication.FirstOrDefaultAsync(m => m.PublicationID == id);
 
-            if (Author == null)
+            if (Publication == null)
             {
                 return NotFound();
             }
@@ -48,7 +48,7 @@ namespace WebAppCapellaKM_05.Pages.Authors
                 return Page();
             }
 
-            _context.Attach(Author).State = EntityState.Modified;
+            _context.Attach(Publication).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace WebAppCapellaKM_05.Pages.Authors
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AuthorExists(Author.AuthorID))
+                if (!PublicationExists(Publication.PublicationID))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace WebAppCapellaKM_05.Pages.Authors
             return RedirectToPage("./Index");
         }
 
-        private bool AuthorExists(int id)
+        private bool PublicationExists(int id)
         {
-            return _context.Author.Any(e => e.AuthorID == id);
+            return _context.Publication.Any(e => e.PublicationID == id);
         }
     }
 }

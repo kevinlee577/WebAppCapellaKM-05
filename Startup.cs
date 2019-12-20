@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -33,6 +33,9 @@ namespace WebAppCapellaKM_05
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
+
+            services.AddDbContext<WebAppCapellaKM_05Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("WebAppCapellaKM_05Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

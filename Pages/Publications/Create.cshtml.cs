@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using WebAppCapellaKM_05.Data;
 using WebAppCapellaKM_05.Models;
 
-namespace WebAppCapellaKM_05.Pages.Authors
+namespace WebAppCapellaKM_05.Pages.Publications
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace WebAppCapellaKM_05.Pages.Authors
         }
 
         [BindProperty]
-        public Author Author { get; set; }
+        public Publication Publication { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -36,7 +36,7 @@ namespace WebAppCapellaKM_05.Pages.Authors
                 return Page();
             }
 
-            _context.Author.Add(Author);
+            _context.Publication.Add(Publication);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAppCapellaKM_05.Data;
 using WebAppCapellaKM_05.Models;
 
-namespace WebAppCapellaKM_05.Pages.Authors
+namespace WebAppCapellaKM_05.Pages.Publications
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace WebAppCapellaKM_05.Pages.Authors
         }
 
         [BindProperty]
-        public Author Author { get; set; }
+        public Publication Publication { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,9 @@ namespace WebAppCapellaKM_05.Pages.Authors
                 return NotFound();
             }
 
-            Author = await _context.Author.FirstOrDefaultAsync(m => m.AuthorID == id);
+            Publication = await _context.Publication.FirstOrDefaultAsync(m => m.PublicationID == id);
 
-            if (Author == null)
+            if (Publication == null)
             {
                 return NotFound();
             }
@@ -45,11 +45,11 @@ namespace WebAppCapellaKM_05.Pages.Authors
                 return NotFound();
             }
 
-            Author = await _context.Author.FindAsync(id);
+            Publication = await _context.Publication.FindAsync(id);
 
-            if (Author != null)
+            if (Publication != null)
             {
-                _context.Author.Remove(Author);
+                _context.Publication.Remove(Publication);
                 await _context.SaveChangesAsync();
             }
 

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebAppCapellaKM_05.Data;
 using WebAppCapellaKM_05.Models;
 
-namespace WebAppCapellaKM_05.Pages.Authors
+namespace WebAppCapellaKM_05.Pages.Publications
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace WebAppCapellaKM_05.Pages.Authors
             _context = context;
         }
 
-        public Author Author { get; set; }
+        public Publication Publication { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace WebAppCapellaKM_05.Pages.Authors
                 return NotFound();
             }
 
-            Author = await _context.Author.FirstOrDefaultAsync(m => m.AuthorID == id);
+            Publication = await _context.Publication.FirstOrDefaultAsync(m => m.PublicationID == id);
 
-            if (Author == null)
+            if (Publication == null)
             {
                 return NotFound();
             }
