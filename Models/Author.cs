@@ -12,7 +12,9 @@ namespace WebAppCapellaKM_05.Models
     {
   
         public int AuthorID { get; set; }
+        [Required]
         public string AuthorFirstName { get; set; }
+        [Required]
         public string AuthorLastName { get; set; }
     }
 }
