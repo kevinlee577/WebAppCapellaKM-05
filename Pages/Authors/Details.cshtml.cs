@@ -28,7 +28,13 @@ namespace WebAppCapellaKM_05.Pages.Authors
                 return NotFound();
             }
 
-            Author = await _context.Author.FirstOrDefaultAsync(m => m.AuthorID == id);
+            //    Author = await _context.Author.FirstOrDefaultAsync(m => m.AuthorID == id);
+               Author = await _context.Author
+              .Include(s => s.Articles)
+              .ThenInclude(e => e.Publication)
+              .AsNoTracking()
+              .FirstOrDefaultAsync(m => m.AuthorID == id);
+
 
             if (Author == null)
             {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebAppCapellaKM_05.Migrations
 {
-    public partial class AddedTablePubWorks : Migration
+    public partial class RebuildDatabase07 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,8 +52,8 @@ namespace WebAppCapellaKM_05.Migrations
                 {
                     AuthorID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AuthorFirstName = table.Column<string>(nullable: true),
-                    AuthorLastName = table.Column<string>(nullable: true)
+                    AuthorFirstName = table.Column<string>(nullable: false),
+                    AuthorLastName = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -66,30 +66,12 @@ namespace WebAppCapellaKM_05.Migrations
                 {
                     PublicationID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PublicationName = table.Column<string>(nullable: true),
+                    PublicationName = table.Column<string>(nullable: false),
                     PublicationPublisher = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Publication", x => x.PublicationID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PubWork",
-                columns: table => new
-                {
-                    PubWorkID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PubWorkName = table.Column<string>(nullable: true),
-                    PubWorkNote = table.Column<string>(nullable: true),
-                    PubWorkAbstract = table.Column<string>(nullable: true),
-                    PubWorkKeywords = table.Column<string>(nullable: true),
-                    PubWorkPublicationID = table.Column<int>(nullable: false),
-                    PubWorkAuthorID = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PubWork", x => x.PubWorkID);
                 });
 
             migrationBuilder.CreateTable(
@@ -198,6 +180,38 @@ namespace WebAppCapellaKM_05.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PubWork",
+                columns: table => new
+                {
+                    PubWorkID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PubWorkName = table.Column<string>(nullable: false),
+                    PubWorkNote = table.Column<string>(nullable: true),
+                    PubWorkAbstract = table.Column<string>(nullable: true),
+                    PubWorkKeywords = table.Column<string>(nullable: true),
+                    PubWorkPublicationID = table.Column<int>(nullable: false),
+                    PubWorkAuthorID = table.Column<int>(nullable: false),
+                    PublicationID = table.Column<int>(nullable: true),
+                    AuthorID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PubWork", x => x.PubWorkID);
+                    table.ForeignKey(
+                        name: "FK_PubWork_Author_AuthorID",
+                        column: x => x.AuthorID,
+                        principalTable: "Author",
+                        principalColumn: "AuthorID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PubWork_Publication_PublicationID",
+                        column: x => x.PublicationID,
+                        principalTable: "Publication",
+                        principalColumn: "PublicationID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -236,6 +250,16 @@ namespace WebAppCapellaKM_05.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PubWork_AuthorID",
+                table: "PubWork",
+                column: "AuthorID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PubWork_PublicationID",
+                table: "PubWork",
+                column: "PublicationID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -256,12 +280,6 @@ namespace WebAppCapellaKM_05.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Author");
-
-            migrationBuilder.DropTable(
-                name: "Publication");
-
-            migrationBuilder.DropTable(
                 name: "PubWork");
 
             migrationBuilder.DropTable(
@@ -269,6 +287,12 @@ namespace WebAppCapellaKM_05.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Author");
+
+            migrationBuilder.DropTable(
+                name: "Publication");
         }
     }
 }

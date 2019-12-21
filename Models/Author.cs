@@ -16,5 +16,7 @@ namespace WebAppCapellaKM_05.Models
         public string AuthorFirstName { get; set; }
         [Required]
         public string AuthorLastName { get; set; }
+
+        public ICollection<PubWork> Articles { get; set; }
     }
 }

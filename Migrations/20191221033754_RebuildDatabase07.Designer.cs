@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebAppCapellaKM_05.Data;
 
 namespace WebAppCapellaKM_05.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191221033754_RebuildDatabase07")]
+    partial class RebuildDatabase07
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -246,7 +248,7 @@ namespace WebAppCapellaKM_05.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AuthorID")
+                    b.Property<int?>("AuthorID")
                         .HasColumnType("int");
 
                     b.Property<string>("PubWorkAbstract")
@@ -268,7 +270,7 @@ namespace WebAppCapellaKM_05.Migrations
                     b.Property<int>("PubWorkPublicationID")
                         .HasColumnType("int");
 
-                    b.Property<int>("PublicationID")
+                    b.Property<int?>("PublicationID")
                         .HasColumnType("int");
 
                     b.HasKey("PubWorkID");
@@ -354,15 +356,11 @@ namespace WebAppCapellaKM_05.Migrations
                 {
                     b.HasOne("WebAppCapellaKM_05.Models.Author", "Author")
                         .WithMany("Articles")
-                        .HasForeignKey("AuthorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorID");
 
                     b.HasOne("WebAppCapellaKM_05.Models.Publication", "Publication")
                         .WithMany("Articles")
-                        .HasForeignKey("PublicationID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PublicationID");
                 });
 #pragma warning restore 612, 618
         }

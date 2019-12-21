@@ -23,6 +23,29 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Author.AuthorID)
         </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Author.Articles)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Article Title</th>
+                    <th>Keywords</th>
+                </tr>
+                @foreach (var item in Model.Author.Articles)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PubWorkName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PubWorkKeywords)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
     </dl>
 </div>
 <div>

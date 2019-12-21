@@ -1,17 +1,39 @@
 ﻿@page
 @model WebAppCapellaKM_05.Pages.Authors.IndexModel
 
+@{
+    ViewData["Title"] = "Students";
+}
+
+<h2>Authors</h2>
+
 <p>
     <a asp-page="Create">Create New</a>
 </p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name:
+            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Author[0].AuthorFirstName)
+               
+                    @Html.DisplayNameFor(model => model.Author[0].AuthorFirstName)
+                
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Author[0].AuthorLastName)
+                <a asp-page="./Index" asp-route-sortOrder="@Model.NameSort">
+                    @Html.DisplayNameFor(model => model.Author[0].AuthorLastName)
+                </a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Author[0].AuthorID)
@@ -20,23 +42,24 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Author) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorFirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorLastName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorID)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.AuthorID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.AuthorID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.AuthorID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Author)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuthorFirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuthorLastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AuthorID)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.AuthorID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.AuthorID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.AuthorID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

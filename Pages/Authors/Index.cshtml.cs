@@ -19,11 +19,48 @@ namespace WebAppCapellaKM_05.Pages.Authors
             _context = context;
         }
 
+        public string NameSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
+
         public IList<Author> Author { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string sortOrder, string searchString)
         {
-            Author = await _context.Author.ToListAsync();
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+
+            CurrentFilter = searchString;
+
+            IQueryable<Author> studentsIQ = from s in _context.Author
+                                             select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                studentsIQ = studentsIQ.Where(s => s.AuthorLastName.Contains(searchString)
+                                       || s.AuthorFirstName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.AuthorLastName);
+                    break;
+                case "Date":
+                    studentsIQ = studentsIQ.OrderBy(s => s.AuthorLastName);
+                    break;
+                case "date_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.AuthorLastName);
+                    break;
+                default:
+                    studentsIQ = studentsIQ.OrderBy(s => s.AuthorLastName);
+                    break;
+            }
+
+
+            //   Author = await _context.Author.ToListAsync();
+                Author = await studentsIQ.AsNoTracking().ToListAsync();
         }
     }
 }

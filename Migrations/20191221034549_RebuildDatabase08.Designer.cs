@@ -10,8 +10,8 @@ using WebAppCapellaKM_05.Data;
 namespace WebAppCapellaKM_05.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191220070245_AddedTablePubWorks")]
-    partial class AddedTablePubWorks
+    [Migration("20191221034549_RebuildDatabase08")]
+    partial class RebuildDatabase08
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -229,9 +229,11 @@ namespace WebAppCapellaKM_05.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AuthorFirstName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AuthorLastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("AuthorID");
@@ -246,6 +248,9 @@ namespace WebAppCapellaKM_05.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("AuthorID")
+                        .HasColumnType("int");
+
                     b.Property<string>("PubWorkAbstract")
                         .HasColumnType("nvarchar(max)");
 
@@ -256,6 +261,7 @@ namespace WebAppCapellaKM_05.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PubWorkName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PubWorkNote")
@@ -264,7 +270,14 @@ namespace WebAppCapellaKM_05.Migrations
                     b.Property<int>("PubWorkPublicationID")
                         .HasColumnType("int");
 
+                    b.Property<int>("PublicationID")
+                        .HasColumnType("int");
+
                     b.HasKey("PubWorkID");
+
+                    b.HasIndex("AuthorID");
+
+                    b.HasIndex("PublicationID");
 
                     b.ToTable("PubWork");
                 });
@@ -277,6 +290,7 @@ namespace WebAppCapellaKM_05.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("PublicationName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PublicationPublisher")
@@ -334,6 +348,21 @@ namespace WebAppCapellaKM_05.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("WebAppCapellaKM_05.Models.PubWork", b =>
+                {
+                    b.HasOne("WebAppCapellaKM_05.Models.Author", "Author")
+                        .WithMany("Articles")
+                        .HasForeignKey("AuthorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebAppCapellaKM_05.Models.Publication", "Publication")
+                        .WithMany("Articles")
+                        .HasForeignKey("PublicationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

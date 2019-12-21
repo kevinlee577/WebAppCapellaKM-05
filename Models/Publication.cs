@@ -12,5 +12,7 @@ namespace WebAppCapellaKM_05.Models
         [Required]
         public string PublicationName { get; set; }
         public string PublicationPublisher { get; set; }
+
+        public ICollection<PubWork> Articles { get; set; }
     }
 }

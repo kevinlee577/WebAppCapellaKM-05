@@ -19,5 +19,13 @@ namespace WebAppCapellaKM_05.Models
         [Required]
         public int PubWorkAuthorID { get; set; }
 
+        public int PublicationID { get; set; }
+        [Required]
+        public int AuthorID { get; set; }
+
+        public Publication Publication { get; set; }
+
+        public Author Author { get; set; }
+
     }
 }
