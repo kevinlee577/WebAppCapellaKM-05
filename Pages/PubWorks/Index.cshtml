@@ -20,10 +20,10 @@
                 @Html.DisplayNameFor(model => model.PubWork[0].PubWorkKeywords)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PubWork[0].PubWorkPublicationID)
+                @Html.DisplayNameFor(model => model.PubWork[0].PublicationID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PubWork[0].PubWorkAuthorID)
+                @Html.DisplayNameFor(model => model.PubWork[0].AuthorID)
             </th>
             <th></th>
         </tr>
@@ -44,10 +44,10 @@
                 @Html.DisplayFor(modelItem => item.PubWorkKeywords)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PubWorkPublicationID)
+                @Html.DisplayFor(modelItem => item.PublicationID)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.PubWorkAuthorID)
+                @Html.DisplayFor(modelItem => item.AuthorID)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.PubWorkID">Edit</a> |
