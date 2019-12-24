@@ -10,7 +10,9 @@ namespace WebAppCapellaKM_05.Models
     {
         public int PublicationID { get; set; }
         [Required]
+        [Display(Name = "Publication Name")]
         public string PublicationName { get; set; }
+        [Display(Name = "Publisher")]
         public string PublicationPublisher { get; set; }
 
         public ICollection<PubWork> Articles { get; set; }

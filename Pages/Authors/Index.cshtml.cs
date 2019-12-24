@@ -11,6 +11,7 @@ using WebAppCapellaKM_05.Models;
 namespace WebAppCapellaKM_05.Pages.Authors
 {
     public class IndexModel : PageModel
+
     {
         private readonly WebAppCapellaKM_05.Data.ApplicationDbContext _context;
 
@@ -24,17 +25,29 @@ namespace WebAppCapellaKM_05.Pages.Authors
         public string CurrentFilter { get; set; }
         public string CurrentSort { get; set; }
 
-        public IList<Author> Author { get;set; }
+        public PaginatedList<Author> Author { get; set; }
 
-        public async Task OnGetAsync(string sortOrder, string searchString)
+        public Publication Publication { get; set; }
+
+        public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex)
         {
+            CurrentSort = sortOrder;
             NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
             CurrentFilter = searchString;
 
             IQueryable<Author> studentsIQ = from s in _context.Author
-                                             select s;
+                                            select s;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -58,9 +71,15 @@ namespace WebAppCapellaKM_05.Pages.Authors
                     break;
             }
 
-
             //   Author = await _context.Author.ToListAsync();
-                Author = await studentsIQ.AsNoTracking().ToListAsync();
+            //   Author = await studentsIQ.AsNoTracking().ToListAsync();
+
+            int pageSize = 5;
+            Author = await PaginatedList<Author>.CreateAsync(
+                studentsIQ.AsNoTracking(),
+                pageIndex ?? 1,
+                pageSize);
         }
+        
     }
 }

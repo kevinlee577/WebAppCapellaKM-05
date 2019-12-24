@@ -10,8 +10,8 @@ using WebAppCapellaKM_05.Data;
 namespace WebAppCapellaKM_05.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191221034549_RebuildDatabase08")]
-    partial class RebuildDatabase08
+    [Migration("20191224075946_DbRebuild04")]
+    partial class DbRebuild04
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -230,11 +230,13 @@ namespace WebAppCapellaKM_05.Migrations
 
                     b.Property<string>("AuthorFirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.Property<string>("AuthorLastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
                     b.HasKey("AuthorID");
 
@@ -243,7 +245,7 @@ namespace WebAppCapellaKM_05.Migrations
 
             modelBuilder.Entity("WebAppCapellaKM_05.Models.PubWork", b =>
                 {
-                    b.Property<int>("PubWorkID")
+                    b.Property<int>("PubWorkKeyID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -253,9 +255,6 @@ namespace WebAppCapellaKM_05.Migrations
 
                     b.Property<string>("PubWorkAbstract")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PubWorkAuthorID")
-                        .HasColumnType("int");
 
                     b.Property<string>("PubWorkKeywords")
                         .HasColumnType("nvarchar(max)");
@@ -267,13 +266,10 @@ namespace WebAppCapellaKM_05.Migrations
                     b.Property<string>("PubWorkNote")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PubWorkPublicationID")
-                        .HasColumnType("int");
-
                     b.Property<int>("PublicationID")
                         .HasColumnType("int");
 
-                    b.HasKey("PubWorkID");
+                    b.HasKey("PubWorkKeyID");
 
                     b.HasIndex("AuthorID");
 

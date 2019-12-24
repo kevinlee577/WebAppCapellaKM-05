@@ -10,7 +10,7 @@ using WebAppCapellaKM_05.Models;
 
 namespace WebAppCapellaKM_05.Pages.PubWorks
 {
-    public class IndexModel : PageModel
+    public class IndexModel : PublicationNamePageModel
     {
         private readonly WebAppCapellaKM_05.Data.ApplicationDbContext _context;
 
@@ -23,7 +23,16 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
 
         public async Task OnGetAsync()
         {
-            PubWork = await _context.PubWork.ToListAsync();
+            //    PubWork = await _context.PubWork.ToListAsync();
+            PubWork = await _context.PubWork
+                 .Include(c => c.Publication)
+                 .Include(d => d.Author)
+                 .AsNoTracking()
+                 .ToListAsync();
         }
+
+        public Publication Publication { get; set; }
+        public Author Author { get; set; }
+
     }
 }

@@ -29,14 +29,20 @@
             </div>
 
             <div class="form-group">
-                <label asp-for="PubWork.PublicationID" class="control-label"></label>
-                <input asp-for="PubWork.PublicationID" class="form-control" />
-                <span asp-validation-for="PubWork.PublicationID" class="text-danger"></span>
+                <label asp-for="PubWork.AuthorID" class="control-label"></label>
+                <select asp-for="PubWork.AuthorID" class="form-control"
+                        asp-items="@Model.AuthorNameSL">
+                    <option value="">-- Select Author --</option>
+                </select>
+                <span asp-validation-for="PubWork.AuthorID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PubWork.AuthorID" class="control-label"></label>
-                <input asp-for="PubWork.AuthorID" class="form-control" />
-                <span asp-validation-for="PubWork.AuthorID" class="text-danger"></span>
+                <label asp-for="PubWork.PublicationID" class="control-label"></label>
+                <select asp-for="PubWork.PublicationID" class="form-control"
+                        asp-items="@Model.PublicationNameSL">
+                    <option value="">-- Select Publication --</option>
+                </select>
+                <span asp-validation-for="PubWork.PublicationID" class="text-danger" />
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

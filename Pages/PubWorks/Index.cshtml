@@ -1,6 +1,12 @@
 ﻿@page
 @model WebAppCapellaKM_05.Pages.PubWorks.IndexModel
 
+@{
+    ViewData["Title"] = "Articles";
+}
+
+    <h2>Articles</h2>
+
 <p>
     <a asp-page="Create">Create New</a>
 </p>
@@ -29,32 +35,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.PubWork) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PubWorkName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PubWorkNote)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PubWorkAbstract)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PubWorkKeywords)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublicationID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AuthorID)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.PubWorkID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.PubWorkID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.PubWorkID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.PubWork)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PubWorkName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PubWorkNote)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PubWorkAbstract)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PubWorkKeywords)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publication.PublicationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.AuthorLastName)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.PubWorkKeyID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.PubWorkKeyID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.PubWorkKeyID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

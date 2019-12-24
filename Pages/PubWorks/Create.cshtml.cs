@@ -10,7 +10,8 @@ using WebAppCapellaKM_05.Models;
 
 namespace WebAppCapellaKM_05.Pages.PubWorks
 {
-    public class CreateModel : PageModel
+//    public class CreateModel : PageModel
+    public class CreateModel : PublicationNamePageModel
     {
         private readonly WebAppCapellaKM_05.Data.ApplicationDbContext _context;
 
@@ -21,6 +22,9 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
 
         public IActionResult OnGet()
         {
+            PopulatePublicationsDropDownList(_context);
+            PopulateAuthorsDropDownList(_context);
+
             return Page();
         }
 
@@ -29,17 +33,39 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
+
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
+                    {
+                        return Page();
+                    }
+
+                //    _context.PubWork.Add(PubWork);
+                //    await _context.SaveChangesAsync();
+
+                //    return RedirectToPage("./Index");
+
+            var emptyPubWork = new PubWork();
+
+            if (await TryUpdateModelAsync<PubWork>(
+                 emptyPubWork,
+                 "PubWork",   // Prefix for form value.
+                 s => s.PubWorkKeyID, s => s.PubWorkName, s => s.AuthorID, s => s.PublicationID, s => s.PubWorkNote, s => s.PubWorkAbstract, s => s.PubWorkKeywords))
             {
-                return Page();
-            }
+                _context.PubWork.Add(emptyPubWork);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }   
 
-            _context.PubWork.Add(PubWork);
-            await _context.SaveChangesAsync();
+            // Select DepartmentID if TryUpdateModelAsync fails.
+            PopulatePublicationsDropDownList(_context, emptyPubWork.PublicationID);
+            PopulateAuthorsDropDownList(_context, emptyPubWork.AuthorID);
 
-            return RedirectToPage("./Index");
+            return Page();
+
         }
-    }
+
+     }
 }
+

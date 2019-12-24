@@ -10,13 +10,31 @@ namespace WebAppCapellaKM_05.Models
 {
     public class Author
     {
-  
+        [Key]
         public int AuthorID { get; set; }
         [Required]
+        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+        [Display(Name = "First Name")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string AuthorFirstName { get; set; }
         [Required]
+        [StringLength(50, ErrorMessage = "Last name cannot be longer than 50 characters.")]
+        [Display(Name = "Last Name")]
+        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string AuthorLastName { get; set; }
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return AuthorLastName + ", " + AuthorFirstName;
+            }
+        }
 
         public ICollection<PubWork> Articles { get; set; }
+
+    //    public Publication Publication { get; set; }
+
+  
     }
 }

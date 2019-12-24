@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebAppCapellaKM_05.Migrations
 {
-    public partial class RebuildDatabase07 : Migration
+    public partial class DbRebuild04 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,8 +52,8 @@ namespace WebAppCapellaKM_05.Migrations
                 {
                     AuthorID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AuthorFirstName = table.Column<string>(nullable: false),
-                    AuthorLastName = table.Column<string>(nullable: false)
+                    AuthorFirstName = table.Column<string>(maxLength: 50, nullable: false),
+                    AuthorLastName = table.Column<string>(maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -184,32 +184,30 @@ namespace WebAppCapellaKM_05.Migrations
                 name: "PubWork",
                 columns: table => new
                 {
-                    PubWorkID = table.Column<int>(nullable: false)
+                    PubWorkKeyID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PubWorkName = table.Column<string>(nullable: false),
-                    PubWorkNote = table.Column<string>(nullable: true),
                     PubWorkAbstract = table.Column<string>(nullable: true),
                     PubWorkKeywords = table.Column<string>(nullable: true),
-                    PubWorkPublicationID = table.Column<int>(nullable: false),
-                    PubWorkAuthorID = table.Column<int>(nullable: false),
-                    PublicationID = table.Column<int>(nullable: true),
-                    AuthorID = table.Column<int>(nullable: true)
+                    PubWorkNote = table.Column<string>(nullable: true),
+                    PublicationID = table.Column<int>(nullable: false),
+                    AuthorID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PubWork", x => x.PubWorkID);
+                    table.PrimaryKey("PK_PubWork", x => x.PubWorkKeyID);
                     table.ForeignKey(
                         name: "FK_PubWork_Author_AuthorID",
                         column: x => x.AuthorID,
                         principalTable: "Author",
                         principalColumn: "AuthorID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PubWork_Publication_PublicationID",
                         column: x => x.PublicationID,
                         principalTable: "Publication",
                         principalColumn: "PublicationID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

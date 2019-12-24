@@ -30,7 +30,7 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
                 return NotFound();
             }
 
-            PubWork = await _context.PubWork.FirstOrDefaultAsync(m => m.PubWorkID == id);
+            PubWork = await _context.PubWork.FirstOrDefaultAsync(m => m.PubWorkKeyID == id);
 
             if (PubWork == null)
             {
@@ -56,7 +56,7 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PubWorkExists(PubWork.PubWorkID))
+                if (!PubWorkExists(PubWork.PubWorkKeyID))
                 {
                     return NotFound();
                 }
@@ -71,7 +71,7 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
 
         private bool PubWorkExists(int id)
         {
-            return _context.PubWork.Any(e => e.PubWorkID == id);
+            return _context.PubWork.Any(e => e.PubWorkKeyID == id);
         }
     }
 }

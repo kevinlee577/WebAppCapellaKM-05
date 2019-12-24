@@ -29,7 +29,7 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
                 return NotFound();
             }
 
-            PubWork = await _context.PubWork.FirstOrDefaultAsync(m => m.PubWorkID == id);
+            PubWork = await _context.PubWork.FirstOrDefaultAsync(m => m.PubWorkKeyID == id);
 
             if (PubWork == null)
             {
