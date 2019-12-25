@@ -74,7 +74,7 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
                 int pageSize = 5;
 
                 PubWork = await PaginatedList<PubWork>.CreateAsync(
-                studentsIQ.AsNoTracking(),
+                studentsIQ.Include(d => d.Author).Include(c => c.Publication).AsNoTracking(),
                 pageIndex ?? 1,
                 pageSize);
 
