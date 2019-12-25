@@ -19,16 +19,71 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
             _context = context;
         }
 
-        public IList<PubWork> PubWork { get;set; }
+        public string NameSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
 
-        public async Task OnGetAsync()
+        public PaginatedList<PubWork> PubWork { get; set; }
+
+    //    public IList<PubWork> PubWork { get;set; }
+
+        public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex)
         {
+
+            CurrentSort = sortOrder;
+            NameSort = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            CurrentFilter = searchString;
+
+            IQueryable<PubWork> studentsIQ = from s in _context.PubWork
+                                            select s;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                studentsIQ = studentsIQ.Where(s => s.PubWorkName.Contains(searchString));
+                                    
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.PubWorkName);
+                    break;
+                case "Date":
+                    studentsIQ = studentsIQ.OrderBy(s => s.PubWorkName);
+                    break;
+                case "date_desc":
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.PubWorkName);
+                    break;
+                default:
+                    studentsIQ = studentsIQ.OrderBy(s => s.PubWorkName);
+                    break;
+            }
+
+                int pageSize = 5;
+
+                PubWork = await PaginatedList<PubWork>.CreateAsync(
+                studentsIQ.AsNoTracking(),
+                pageIndex ?? 1,
+                pageSize);
+
             //    PubWork = await _context.PubWork.ToListAsync();
-            PubWork = await _context.PubWork
-                 .Include(c => c.Publication)
-                 .Include(d => d.Author)
-                 .AsNoTracking()
-                 .ToListAsync();
+            //    PubWork = await _context.PubWork
+            //        .Include(c => c.Publication)
+            //        .Include(d => d.Author)
+            //        .AsNoTracking()
+            //        .ToListAsync();
         }
 
         public Publication Publication { get; set; }
