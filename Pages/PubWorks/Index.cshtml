@@ -31,7 +31,7 @@
                 </a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PubWork[0].PubWorkNote)
+                @Html.DisplayNameFor(model => model.PubWork[0].PubWorkYear)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PubWork[0].PubWorkAbstract)
@@ -45,37 +45,43 @@
             <th>
                 @Html.DisplayNameFor(model => model.PubWork[0].Author.FullName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PubWork[0].PubWorkKeyID)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.PubWork)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PubWorkName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PubWorkNote)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PubWorkAbstract)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PubWorkKeywords)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Publication.PublicationName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author.FullName)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.PubWorkKeyID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.PubWorkKeyID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.PubWorkKeyID">Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PubWorkName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PubWorkYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PubWorkAbstract)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PubWorkKeywords)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publication.PublicationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PubWorkKeyID)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.PubWorkKeyID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.PubWorkKeyID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.PubWorkKeyID">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

@@ -22,7 +22,7 @@ namespace WebAppCapellaKM_05.Models
         [Display(Name = "Last Name")]
         [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string AuthorLastName { get; set; }
-        [Display(Name = "Full Name")]
+        [Display(Name = "Author Name")]
         public string FullName
         {
             get

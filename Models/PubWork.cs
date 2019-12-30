@@ -10,19 +10,26 @@ namespace WebAppCapellaKM_05.Models
     public class PubWork
     {
         [Key]
+        [Display(Name = "PID")]
         public int PubWorkKeyID { get; set; }
         [Required]
         [Display(Name = "Article Title")]
         public string PubWorkName { get; set; }
+        [Required]
+        [Display(Name = "Article Year")]
+        [DisplayFormat(DataFormatString = "{0:yyyy}", ApplyFormatInEditMode = true)]
+        public string PubWorkYear { get; set; }
         [Display(Name = "Article Abstract")]
         public string PubWorkAbstract { get; set; }
         [Display(Name = "Article Keywords")]
         public string PubWorkKeywords { get; set; }
         [Display(Name = "Notes")]
-        public string PubWorkNote { get; set; }
-        
-     //   public int PubWorkPublicationID { get; set; }   
-     //   public int PubWorkAuthorID { get; set; }
+        public string PubWorkNotes { get; set; }
+        [Display(Name = "Key Phrases")]
+        public string PubWorkKeyPhrases { get; set; }
+
+        //   public int PubWorkPublicationID { get; set; }   
+        //   public int PubWorkAuthorID { get; set; }
 
         [Required]
      //   [Column("PubWorkPublicationID")]

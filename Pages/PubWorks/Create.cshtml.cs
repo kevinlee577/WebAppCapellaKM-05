@@ -51,7 +51,7 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
             if (await TryUpdateModelAsync<PubWork>(
                  emptyPubWork,
                  "PubWork",   // Prefix for form value.
-                 s => s.PubWorkKeyID, s => s.PubWorkName, s => s.AuthorID, s => s.PublicationID, s => s.PubWorkNote, s => s.PubWorkAbstract, s => s.PubWorkKeywords))
+                 s => s.PubWorkKeyID, s => s.PubWorkName, s => s.PubWorkYear, s => s.AuthorID, s => s.PublicationID, s => s.PubWorkNotes, s => s.PubWorkAbstract, s => s.PubWorkKeywords))
             {
                 _context.PubWork.Add(emptyPubWork);
                 await _context.SaveChangesAsync();
