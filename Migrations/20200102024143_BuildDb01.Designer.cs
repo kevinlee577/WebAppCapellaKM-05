@@ -10,8 +10,8 @@ using WebAppCapellaKM_05.Data;
 namespace WebAppCapellaKM_05.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191224075946_DbRebuild04")]
-    partial class DbRebuild04
+    [Migration("20200102024143_BuildDb01")]
+    partial class BuildDb01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -256,6 +256,9 @@ namespace WebAppCapellaKM_05.Migrations
                     b.Property<string>("PubWorkAbstract")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PubWorkKeyPhrases")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PubWorkKeywords")
                         .HasColumnType("nvarchar(max)");
 
@@ -263,7 +266,11 @@ namespace WebAppCapellaKM_05.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PubWorkNote")
+                    b.Property<string>("PubWorkNotes")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PubWorkYear")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PublicationID")

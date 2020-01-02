@@ -22,13 +22,14 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
         public string NameSort { get; set; }
         public string DateSort { get; set; }
         public string CurrentFilter { get; set; }
+        public string CurrentFilter2 { get; set; }
         public string CurrentSort { get; set; }
 
         public PaginatedList<PubWork> PubWork { get; set; }
 
     //    public IList<PubWork> PubWork { get;set; }
 
-        public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex)
+        public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex, string searchString2)
         {
 
             CurrentSort = sortOrder;
@@ -53,6 +54,26 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
             {
                 studentsIQ = studentsIQ.Where(s => s.PubWorkName.Contains(searchString));
                                     
+            }
+
+            if (searchString2 != null)
+            {
+                pageIndex = 1;
+            }
+            else
+            {
+                searchString2 = currentFilter;
+            }
+
+            CurrentFilter2 = searchString2;
+
+        //    IQueryable<PubWork> studentsIQ = from s in _context.PubWork
+        //                                     select s;
+
+            if (!String.IsNullOrEmpty(searchString2))
+            {
+                studentsIQ = studentsIQ.Where(s => s.PubWorkKeyPhrases.Contains(searchString2));
+
             }
 
             switch (sortOrder)

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebAppCapellaKM_05.Migrations
 {
-    public partial class DbRebuild04 : Migration
+    public partial class BuildDb01 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -187,9 +187,11 @@ namespace WebAppCapellaKM_05.Migrations
                     PubWorkKeyID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PubWorkName = table.Column<string>(nullable: false),
+                    PubWorkYear = table.Column<string>(nullable: false),
                     PubWorkAbstract = table.Column<string>(nullable: true),
                     PubWorkKeywords = table.Column<string>(nullable: true),
-                    PubWorkNote = table.Column<string>(nullable: true),
+                    PubWorkNotes = table.Column<string>(nullable: true),
+                    PubWorkKeyPhrases = table.Column<string>(nullable: true),
                     PublicationID = table.Column<int>(nullable: false),
                     AuthorID = table.Column<int>(nullable: false)
                 },
