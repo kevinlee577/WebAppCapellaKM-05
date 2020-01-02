@@ -15,15 +15,15 @@ namespace WebAppCapellaKM_05.Models
         [Required]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         [Display(Name = "First Name")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+    //    [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string AuthorFirstName { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "Last name cannot be longer than 50 characters.")]
         [Display(Name = "Last Name")]
-        [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
+    //    [RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string AuthorLastName { get; set; }
         [Display(Name = "Author Name")]
-        public string FullName
+        public string AuthorFullName
         {
             get
             {

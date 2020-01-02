@@ -29,11 +29,11 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
             object selectedAuthor = null)
         {
             var authorsQuery = from d in _context.Author
-                                    orderby d.AuthorLastName // Sort by name.
+                                    orderby d.AuthorLastName, d.AuthorFirstName // Sort by name.
                                     select d;
 
             AuthorNameSL = new SelectList(authorsQuery.AsNoTracking(),
-                        "AuthorID", "AuthorLastName", selectedAuthor);
+                        "AuthorID", "AuthorFullName", selectedAuthor);
         }
 
     }  

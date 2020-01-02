@@ -18,7 +18,7 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
                                     select d;
 
             AuthorNameSL = new SelectList(authorsQuery.AsNoTracking(),
-                        "AuthorID", "AuthorName", selectedAuthor);
+                        "AuthorID", "AuthorLastName", selectedAuthor);
         }
     }
 }
