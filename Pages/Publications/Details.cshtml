@@ -23,6 +23,42 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Publication.PublicationID)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Publication.Articles)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Article Title</th>
+                    <th>Year</th>
+                    <th>Abstract</th>
+                    <th>Author</th>
+                    <th>PID</th>
+                </tr>
+                @foreach (var item in Model.Publication.Articles)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PubWorkName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PubWorkYear)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PubWorkAbstract)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author.AuthorFullName)
+                        </td>
+                        <td>
+                            <a asp-page="/PubWorks/Details" asp-route-id="@item.PubWorkKeyID">
+                                @Html.DisplayFor(modelItem => item.PubWorkKeyID)
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
     </dl>
 </div>
 <div>

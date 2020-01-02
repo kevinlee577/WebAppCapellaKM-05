@@ -42,21 +42,21 @@
             @Html.DisplayFor(model => model.PubWork.PubWorkKeyPhrases)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PubWork.Publication.PublicationID)
+            @Html.DisplayNameFor(model => model.PubWork.Publication.PublicationName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PubWork.Publication.PublicationID)
+            @Html.DisplayFor(model => model.PubWork.Publication.PublicationName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PubWork.Author.AuthorID)
+            @Html.DisplayNameFor(model => model.PubWork.Author.AuthorFullName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PubWork.Author.AuthorID)
+            @Html.DisplayFor(model => model.PubWork.Author.AuthorFullName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PubWork.PubWorkKeyID)
         </dt>
-        <dd>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PubWork.PubWorkKeyID)
         </dd>
     </dl>

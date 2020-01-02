@@ -47,5 +47,8 @@ namespace WebAppCapellaKM_05.Models
 
         public Author Author { get; set; }
 
+     //   public ICollection<Author> Author { get; set; }
+     //   public ICollection<Publication> Publication { get; set; }
+
     }
 }

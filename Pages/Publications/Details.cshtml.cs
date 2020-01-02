@@ -28,7 +28,13 @@ namespace WebAppCapellaKM_05.Pages.Publications
                 return NotFound();
             }
 
-            Publication = await _context.Publication.FirstOrDefaultAsync(m => m.PublicationID == id);
+        //    Publication = await _context.Publication.FirstOrDefaultAsync(m => m.PublicationID == id);
+         
+            Publication = await _context.Publication
+            .Include(s => s.Articles)
+            .ThenInclude(e => e.Author)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(m => m.PublicationID == id);
 
             if (Publication == null)
             {

@@ -33,7 +33,7 @@
                     <th>Article Title</th>
                     <th>Year</th>
                     <th>Abstract</th>
-                    <th>Keywords</th>
+                    <th>Publication</th>
                     <th>PID</th>
                 </tr>
                 @foreach (var item in Model.Author.Articles)
@@ -49,10 +49,12 @@
                     @Html.DisplayFor(modelItem => item.PubWorkAbstract)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PubWorkKeywords)
+                    @Html.DisplayFor(modelItem => item.Publication.PublicationName)
                 </td>
                 <td>
+                    <a asp-page="/PubWorks/Details" asp-route-id="@item.PubWorkKeyID">
                     @Html.DisplayFor(modelItem => item.PubWorkKeyID)
+                    </a>
                 </td>
             </tr>
                 }
