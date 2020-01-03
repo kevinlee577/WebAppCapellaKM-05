@@ -8,40 +8,34 @@
 <h2>Articles</h2>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create">Create New</a> ||
+    <a asp-page="Create">Author Search</a> ||
+    <a asp-page="/PubWorks/IndexList">Article List</a>
 </p>
 
 <table class="table">
     <thead>
         <tr>
-            <th>
-       <form asp-page="./Index" method="get">
-        <div class="form-actions no-color">
-            <p>
-                Article Title:
-                <input type="text" name="SearchString" value="@Model.CurrentFilter" />
-                <input type="submit" value="Search" class="btn btn-primary" /> 
-                <a asp-page="./Index">Back to full List</a>
-            </p>
-        </div>
-    </form>
-                </th> 
-            
-            <th> 
-                
 
-    <form asp-page="./Index" method="get">
-        <div class="form-actions no-color">
-            <p>
-                Article Keyword:
-                <input type="text" name="SearchString2" value="@Model.CurrentFilter2" />
-                <input type="submit" value="Search" class="btn btn-primary" /> 
-                <a asp-page="./Index">Back to full List</a>
-            </p>
-        </div>
-    </form>
-                </th>
-            </tr>
+
+
+            <th>
+
+
+                <form asp-page="./Index" method="get">
+                    <div class="form-actions no-color">
+                        <p>
+                            Keyword:
+                            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+                            <input type="submit" value="Search" class="btn btn-primary" />
+                            <a asp-page="./Index">Back to full List</a>
+                        </p>
+                    </div>
+                </form>
+            </th>
+            
+
+        </tr>
     </thead>
     </table>
 

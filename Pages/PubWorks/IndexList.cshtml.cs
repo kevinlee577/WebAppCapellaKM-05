@@ -10,27 +10,26 @@ using WebAppCapellaKM_05.Models;
 
 namespace WebAppCapellaKM_05.Pages.PubWorks
 {
-    public class IndexModel : PublicationNamePageModel
+    public class IndexListModel : PublicationNamePageModel
     {
         private readonly WebAppCapellaKM_05.Data.ApplicationDbContext _context;
 
-        public IndexModel(WebAppCapellaKM_05.Data.ApplicationDbContext context)
+        public IndexListModel(WebAppCapellaKM_05.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
         public string NameSort { get; set; }
         public string DateSort { get; set; }
-        public string CurrentSort { get; set; }
         public string CurrentFilter { get; set; }
-        public string CurrentFilter1 { get; set; }
-        public string CurrentFilter3 { get; set; }
+
+        public string CurrentSort { get; set; }
 
         public PaginatedList<PubWork> PubWork { get; set; }
 
-    //    public IList<PubWork> PubWork { get;set; }
+        //    public IList<PubWork> PubWork { get;set; }
 
-        public async Task OnGetAsync(string sortOrder, string currentFilter, int? pageIndex, string searchString)
+        public async Task OnGetAsync(string sortOrder, string currentFilter, string searchString, int? pageIndex)
         {
 
             CurrentSort = sortOrder;
@@ -48,39 +47,38 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
 
             CurrentFilter = searchString;
 
-            IQueryable<PubWork> articlesIQ = from s in _context.PubWork
+            IQueryable<PubWork> studentsIQ = from s in _context.PubWork
                                              select s;
-
-                                
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                articlesIQ = articlesIQ.Where(s => s.PubWorkKeyPhrases.Contains(searchString));
+                studentsIQ = studentsIQ.Where(s => s.PubWorkName.Contains(searchString));
 
             }
+
 
             switch (sortOrder)
             {
                 case "name_desc":
-                    articlesIQ = articlesIQ.OrderByDescending(s => s.PubWorkName);
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.PubWorkName);
                     break;
                 case "Date":
-                    articlesIQ = articlesIQ.OrderBy(s => s.PubWorkName);
+                    studentsIQ = studentsIQ.OrderBy(s => s.PubWorkName);
                     break;
                 case "date_desc":
-                    articlesIQ = articlesIQ.OrderByDescending(s => s.PubWorkName);
+                    studentsIQ = studentsIQ.OrderByDescending(s => s.PubWorkName);
                     break;
                 default:
-                    articlesIQ = articlesIQ.OrderBy(s => s.PubWorkName);
+                    studentsIQ = studentsIQ.OrderBy(s => s.PubWorkName);
                     break;
             }
 
-                int pageSize = 5;
+            int pageSize = 5;
 
-                PubWork = await PaginatedList<PubWork>.CreateAsync(
-                articlesIQ.Include(d => d.Author).Include(c => c.Publication).AsNoTracking(),
-                pageIndex ?? 1,
-                pageSize);
+            PubWork = await PaginatedList<PubWork>.CreateAsync(
+            studentsIQ.Include(d => d.Author).Include(c => c.Publication).AsNoTracking(),
+            pageIndex ?? 1,
+            pageSize);
 
             //    PubWork = await _context.PubWork.ToListAsync();
             //    PubWork = await _context.PubWork

@@ -1,0 +1,116 @@
+﻿@page
+@model WebAppCapellaKM_05.Pages.PubWorks.IndexListModel
+
+@{
+    ViewData["Title"] = "Article List";
+}
+
+<h2>Articles</h2>
+
+<p>
+    <a asp-page="Create">Create New</a> |
+    <a asp-page="Create">Author Search</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <form asp-page="./IndexList" method="get">
+                    <div class="form-actions no-color">
+                        <p>
+                            Article Title:
+                            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+                            <input type="submit" value="Search" class="btn btn-primary" />
+                            <a asp-page="./IndexList">Back to full List</a>
+                        </p>
+                    </div>
+                </form>
+            </th>
+
+         
+
+
+        </tr>
+    </thead>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-page="./IndexList" asp-route-sortOrder="@Model.NameSort">
+                    @Html.DisplayNameFor(model => model.PubWork[0].PubWorkName)
+                </a>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PubWork[0].PubWorkYear)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PubWork[0].PubWorkKeywords)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PubWork[0].Publication.PublicationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PubWork[0].Author.AuthorFullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PubWork[0].PubWorkKeyID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PubWork)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PubWorkName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PubWorkYear)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PubWorkKeywords)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Publication.PublicationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author.AuthorFullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PubWorkKeyID)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.PubWorkKeyID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.PubWorkKeyID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.PubWorkKeyID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.PubWork.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.PubWork.HasNextPage ? "disabled" : "";
+}
+
+<a asp-page="./IndexList"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.PubWork.PageIndex - 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @prevDisabled">
+    Previous
+</a>
+<a asp-page="./IndexList"
+   asp-route-sortOrder="@Model.CurrentSort"
+   asp-route-pageIndex="@(Model.PubWork.PageIndex + 1)"
+   asp-route-currentFilter="@Model.CurrentFilter"
+   class="btn btn-primary @nextDisabled">
+    Next
+</a>
