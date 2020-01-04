@@ -55,9 +55,8 @@
                     @Html.DisplayNameFor(model => model.PubWork[0].PubWorkKeyPhrases)
 
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PubWork[0].PubWorkKeywords)
-                </th>
+
+
                 <th>
                     @Html.DisplayNameFor(model => model.PubWork[0].Publication.PublicationName)
                 </th>
@@ -83,9 +82,8 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.PubWorkKeyPhrases)
                     </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PubWorkKeywords)
-                    </td>
+
+
                     <td>
                         @Html.DisplayFor(modelItem => item.Publication.PublicationName)
                     </td>
@@ -95,9 +93,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.PubWorkKeyID)
                     </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.PubWorkKeyID">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.PubWorkKeyID">Details</a> |
+                    <td style="width:5%">
+                        <a asp-page="./Edit" asp-route-id="@item.PubWorkKeyID">Edit</a> 
+                        <a asp-page="./Details" asp-route-id="@item.PubWorkKeyID">Details</a> 
                         <a asp-page="./Delete" asp-route-id="@item.PubWorkKeyID">Delete</a>
                     </td>
                 </tr>

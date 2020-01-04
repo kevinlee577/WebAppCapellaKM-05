@@ -52,8 +52,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PublicationID)
                 </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.PublicationID">Edit</a> |
+                <td style="width:20%">
+                    <a asp-page="./Edit" asp-route-id="@item.PublicationID">Edit</a> |  
                     <a asp-page="./Details" asp-route-id="@item.PublicationID">Details</a> |
                     <a asp-page="./Delete" asp-route-id="@item.PublicationID">Delete</a>
                 </td>

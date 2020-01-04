@@ -55,7 +55,8 @@ namespace WebAppCapellaKM_05.Pages.PubWorks
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                articlesIQ = articlesIQ.Where(s => s.PubWorkKeyPhrases.Contains(searchString));
+                articlesIQ = articlesIQ.Where(s => s.PubWorkName.Contains(searchString)
+                                        || s.PubWorkKeyPhrases.Contains(searchString));
 
             }
 
