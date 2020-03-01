@@ -40,6 +40,7 @@ namespace WebAppCapellaKM_05
                 microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
                 microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
             });
+
             services.Configure<IdentityOptions>(options =>
                 {
                     // Password settings.
