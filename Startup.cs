@@ -35,7 +35,13 @@ namespace WebAppCapellaKM_05
             //   services.AddDbContext<WebAppCapellaKM_05Context>(options =>
             //           options.UseSqlServer(Configuration.GetConnectionString("WebAppCapellaKM_05Context")));
 
-                services.Configure<IdentityOptions>(options =>
+            services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
+            {
+                microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
+                microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
+            });
+
+            services.Configure<IdentityOptions>(options =>
                 {
                     // Password settings.
                     options.Password.RequireDigit = true;
