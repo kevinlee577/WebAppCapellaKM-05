@@ -23,7 +23,7 @@ namespace WebAppCapellaKM_05.Models
         public string PubWorkAbstract { get; set; }
         [Display(Name = "Article Keywords")]
         public string PubWorkKeywords { get; set; }
-        [Display(Name = "Notes")]
+        [Display(Name = "Research Questions")]
         public string PubWorkNotes { get; set; }
         [Display(Name = "Article Key Phrases")]
         public string PubWorkKeyPhrases { get; set; }
