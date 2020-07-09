@@ -10,8 +10,8 @@ using WebAppCapellaKM_05.Data;
 namespace WebAppCapellaKM_05.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200102171101_AuthorFullName")]
-    partial class AuthorFullName
+    [Migration("20200515072443_InitialCreate-01")]
+    partial class InitialCreate01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

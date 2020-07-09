@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebAppCapellaKM_05.Migrations
 {
-    public partial class BuildDb01 : Migration
+    public partial class InitialCreate01 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
